@@ -4,6 +4,7 @@ from os import path
 
 header_comment = '# %%\n'
 
+
 def nb2py(notebook):
     result = []
     cells = notebook['cells']
@@ -12,7 +13,8 @@ def nb2py(notebook):
         cell_type = cell['cell_type']
 
         if cell_type == 'markdown':
-            result.append("%s'''\n%s\n'''" % (header_comment, ''.join(cell['source'])))
+            result.append("%s'''\n%s\n'''" %
+                          (header_comment, ''.join(cell['source'])))
 
         if cell_type == 'code':
             result.append("%s%s" % (header_comment, ''.join(cell['source'])))
@@ -73,14 +75,18 @@ def convert(in_file, out_file):
     _, out_ext = path.splitext(out_file)
 
     if in_ext == '.ipynb' and out_ext == '.py':
-        with open(in_file, 'r') as f: notebook = json.load(f)
+        with open(in_file, 'r') as f:
+            notebook = json.load(f)
         py_str = nb2py(notebook)
-        with open(out_file, 'w') as f: f.write(py_str)
+        with open(out_file, 'w') as f:
+            f.write(py_str)
 
     elif in_ext == '.py' and out_ext == '.ipynb':
-        with open(in_file, 'r') as f: py_str = f.read()
+        with open(in_file, 'r') as f:
+            py_str = f.read()
         notebook = py2nb(py_str)
-        with open(out_file, 'w') as f: json.dump(notebook, f, indent=2)
+        with open(out_file, 'w') as f:
+            json.dump(notebook, f, indent=2)
 
     else:
         raise(Exception('Extensions must be .ipynb and .py or vice versa'))
@@ -89,8 +95,8 @@ def convert(in_file, out_file):
 if __name__ == '__main__':
     argv = sys.argv
     if len(argv) < 3:
-        print('Usage: python %s in.ipynb out.py' % argv[0])
-        print('or:    python %s in.py out.ipynb' % argv[0])
+        print('Usage: python -m vscode-ipynb-py-convert in.ipynb out.py')
+        print('or:    python -m vscode-ipynb-py-convert in.py out.ipynb')
         sys.exit(1)
 
     convert(in_file=argv[1], out_file=argv[2])
