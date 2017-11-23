@@ -4,7 +4,7 @@
 
 Lots more [Jupyter python vscode examples](https://github.com/DonJayamanne/pythonVSCode/wiki/Jupyter-Examples)
 
-`vscode-ipynb-py-convert` python module converts ipynb->py and py->ipynb.
+[vscode-ipynb-py-convert](https://pypi.python.org/pypi/vscode-ipynb-py-convert) python module converts ipynb->py and py->ipynb.
 
 ## Example
 
