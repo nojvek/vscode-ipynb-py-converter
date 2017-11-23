@@ -25,5 +25,3 @@ Markdown cells are converted to python multiline strings `'''`. Code cells are l
 **Jupyter ipynb notebook**
 
 ![](examples/jupyter.png)
-
-Conversion can be done
